@@ -6,7 +6,8 @@ services:
       - "5000:5000"
     depends_on:
       - rabbitmq
-    command: bash -c "sleep 3 && flask run -h 0.0.0.0"
+    command: flask run -h 0.0.0.0
+    restart: always
   rabbitmq:
     image: rabbitmq:3.8-management
     ports:
