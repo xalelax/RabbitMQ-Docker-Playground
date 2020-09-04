@@ -16,6 +16,11 @@ class TestProducer(unittest.TestCase):
         body = response.json['body']
         self.assertEqual(body, "Thanks for visiting!")
 
+        producer.producer.channel.basic_publish.assert_called_with(
+            routing_key='hello',
+            body="Hey bud, someone visited me",
+            exchange='')
+
 
 if __name__ == '__main__':
     unittest.main()
