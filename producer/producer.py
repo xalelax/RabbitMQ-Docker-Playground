@@ -5,7 +5,7 @@ import atexit
 app = Flask(__name__)
 
 # Setup of connection
-connection = pika.BlockingConnection(pika.ConnectionParameters('127.0.0.1'))
+connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
 channel = connection.channel()
 channel.queue_declare(queue='hello')
 

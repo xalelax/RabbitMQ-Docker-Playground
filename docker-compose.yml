@@ -4,14 +4,11 @@ services:
     build: ./producer
     ports:
       - "5000:5000"
-    network_mode: "host"
     depends_on:
       - rabbitmq
-    command: bash -c "sleep 10 && flask run"
+    command: bash -c "sleep 3 && flask run -h 0.0.0.0"
   rabbitmq:
     image: rabbitmq:3.8-management
-    hostname: playful-rabbit
     ports:
       - 15672:15672
       - 5672:5672
-    network_mode: "host"
