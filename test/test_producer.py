@@ -1,11 +1,16 @@
 import unittest
-from producer.producer import app
+from unittest.mock import Mock
+import producer.producer
 
 
 class TestProducer(unittest.TestCase):
 
+    def setUp(self):
+        self.app = producer.producer.app
+        producer.producer.channel = Mock()
+
     def test_index(self):
-        response = app.test_client().get('/')
+        response = self.app.test_client().get('/')
         self.assertEqual(response.status_code, 200)
 
         body = response.json['body']
