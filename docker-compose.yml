@@ -1,12 +1,18 @@
 version: '3.8'
 services:
-  web:
+  producer:
     build: ./producer
     ports:
       - "5000:5000"
     depends_on:
       - rabbitmq
     command: flask run -h 0.0.0.0
+    restart: always
+  consumer:
+    build: ./consumer
+    depends_on:
+      - rabbitmq
+    tty: true
     restart: always
   rabbitmq:
     image: rabbitmq:3.8-management
